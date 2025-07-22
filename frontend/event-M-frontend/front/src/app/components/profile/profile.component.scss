@@ -1,0 +1,99 @@
+$primary-color: #f59e0b;
+$primary-color-dark: #d97706;
+$text-color-dark: #1f2937;
+$text-color-light: #6b7280;
+$background-color: #f8f9fa;
+$card-background: #ffffff;
+$border-color: #e5e7eb;
+$card-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+
+:host {
+  display: block;
+  background-color: $background-color;
+  min-height: 100vh;
+}
+
+.profile-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem;
+
+  h1 { font-size: 2.2rem; font-weight: 700; color: $text-color-dark; }
+  p { font-size: 1.1rem; color: $text-color-light; margin-top: -0.5rem; margin-bottom: 2.5rem; }
+}
+
+.loading-indicator {
+  text-align: center;
+  padding: 3rem;
+  color: $text-color-light;
+}
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+  align-items: start;
+}
+
+.profile-card {
+  background: $card-background;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: $card-shadow;
+  border: 1px solid $border-color;
+
+  h2 {
+    font-size: 1.5rem;
+    margin-top: 0;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid $border-color;
+  }
+}
+
+.form-row {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  flex: 1;
+
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+
+  input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: 1px solid $border-color;
+    border-radius: 8px;
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+      box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
+    }
+    &:disabled {
+      background-color: #f3f4f6;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.btn.btn-primary {
+  width: 100%;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 8px;
+  background-color: $primary-color;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  &:hover { background-color: $primary-color-dark; }
+  &:disabled { background-color: #ccc; cursor: not-allowed; }
+}

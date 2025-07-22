@@ -1,0 +1,34 @@
+.section-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+
+  .mat-mdc-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .header-button {
+    margin-left: auto;
+  }
+}
+
+.data-table {
+  width: 100%;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.empty-state, .loading-indicator {
+  padding: 2rem;
+  text-align: center;
+  color: #6b7280;
+}

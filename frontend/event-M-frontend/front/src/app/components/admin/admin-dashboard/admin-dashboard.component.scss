@@ -1,0 +1,27 @@
+:host {
+  display: block;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.admin-layout {
+  display: flex;
+  height: 100%;
+}
+
+.sidebar {
+  flex-shrink: 0; // Prevent the sidebar from shrinking
+  height: 100vh;
+  position: fixed; // Fix the sidebar
+  top: 0;
+  left: 0;
+}
+
+.main-content {
+  flex-grow: 1;
+  height: 100vh;
+  overflow-y: auto; // Allow content to scroll
+  padding: 2rem;
+  background-color: #f9fafb;
+  margin-left: 260px; // This must match the sidebar width
+}

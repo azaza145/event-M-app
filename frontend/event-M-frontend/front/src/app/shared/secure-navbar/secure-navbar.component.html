@@ -1,0 +1,18 @@
+<nav class="navbar">
+  <div class="nav-container">
+    <a class="nav-logo" [routerLink]="authService.isAdmin() ? '/admin/dashboard' : '/dashboard'">Bank Al-Maghrib Events</a>
+    <ul class="nav-menu">
+      <li><a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Tableau de Bord</a></li>
+      
+      <!-- ADD THIS LINK - IT SHOWS FOR ADMINS AND ORGANIZERS -->
+      <li *ngIf="authService.currentUser()?.role === 'ADMIN' || authService.currentUser()?.role === 'ORGANIZER'">
+        <a routerLink="/my-events" routerLinkActive="active">Mes Événements</a>
+      </li>
+
+      <li *ngIf="authService.isAdmin()">
+        <a routerLink="/admin/dashboard" routerLinkActive="active">Panel Admin</a>
+      </li>
+      <li><a (click)="logout()" class="nav-logout-link">Déconnexion</a></li>
+    </ul>
+  </div>
+</nav>

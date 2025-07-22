@@ -1,0 +1,68 @@
+<app-secure-navbar></app-secure-navbar>
+
+<div class="management-container">
+  <mat-card class="section-card">
+    <mat-card-header>
+      <div class="header-content">
+        <mat-card-title>Mes Événements</mat-card-title>
+        <mat-card-subtitle>Créer, modifier et supprimer les événements que vous organisez.</mat-card-subtitle>
+      </div>
+      <button mat-flat-button color="primary" class="header-button" (click)="openEventDialog()">
+        <mat-icon>add</mat-icon>
+        Nouvel Événement
+      </button>
+    </mat-card-header>
+    
+    <mat-card-content>
+      <div *ngIf="isLoading" class="loading-indicator">
+        Chargement de vos événements...
+      </div>
+      
+      <div *ngIf="!isLoading && myEvents.length === 0" class="empty-state">
+        <i class="material-icons">event_busy</i>
+        <p>Vous n'avez encore créé aucun événement.</p>
+        <button mat-stroked-button color="primary" (click)="openEventDialog()">Créer votre premier événement</button>
+      </div>
+
+      <div class="table-container" *ngIf="!isLoading && myEvents.length > 0">
+        <table mat-table [dataSource]="myEvents" class="data-table">
+          
+          <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef>Titre</th>
+            <td mat-cell *matCellDef="let event">{{ event.title }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef>Date</th>
+            <td mat-cell *matCellDef="let event">{{ event.date | date:'dd/MM/yyyy' }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="location">
+            <th mat-header-cell *matHeaderCellDef>Lieu</th>
+            <td mat-cell *matCellDef="let event">{{ event.location }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="participants">
+            <th mat-header-cell *matHeaderCellDef class="text-center">Inscrits</th>
+            <td mat-cell *matCellDef="let event" class="text-center">{{ event.participants?.length || 0 }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef class="text-right">Actions</th>
+            <td mat-cell *matCellDef="let event" class="text-right">
+              <button mat-icon-button color="primary" (click)="openEventDialog(event)" matTooltip="Modifier l'événement">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button color="warn" (click)="deleteEvent(event)" matTooltip="Supprimer l'événement">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

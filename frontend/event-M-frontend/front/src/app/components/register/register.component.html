@@ -1,0 +1,95 @@
+<nav class="navbar">
+  <a routerLink="/" class="nav-logo">Bank Al-Maghrib Events</a>
+  <ul class="nav-menu">
+    <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Accueil</a></li>
+    <li><a routerLink="/login" routerLinkActive="active">Connexion</a></li>
+    <li><a routerLink="/register" class="nav-register-btn">Inscription</a></li>
+  </ul>
+</nav>
+
+<div class="form-container">
+  <div class="form-card">
+    <h2>Créer un compte</h2>
+    <p>Rejoignez la plateforme de gestion d'événements Bank Al-Maghrib</p>
+
+    <div *ngIf="registrationSuccess" class="alert alert-success">
+      {{ successMessage }}<br>
+      Vous allez être redirigé vers la page de connexion.
+    </div>
+
+    <form *ngIf="!registrationSuccess" #registerForm="ngForm" (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="firstName">Prénom</label>
+          <input type="text" id="firstName" name="firstName" [(ngModel)]="registerData.firstName" required placeholder="Votre prénom">
+        </div>
+        <div class="form-group">
+          <label for="lastName">Nom</label>
+          <input type="text" id="lastName" name="lastName" [(ngModel)]="registerData.lastName" required placeholder="Votre nom">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Adresse email professionnelle</label>
+        <input type="email" id="email" name="email" [(ngModel)]="registerData.email" required email placeholder="votre.email@bkam.ma">
+      </div>
+
+      <div class="form-group">
+        <label for="department">Département</label>
+        <select id="department" name="department" [(ngModel)]="registerData.department" required>
+          <option value="" disabled selected>Sélectionnez votre département</option>
+          <option value="Direction Générale">Direction Générale</option>
+          <option value="Politique Monétaire et Change">Politique Monétaire et Change</option>
+          <option value="Stabilité Financière">Stabilité Financière</option>
+          <option value="Supervision Bancaire">Supervision Bancaire</option>
+          <option value="Études et Relations Internationales">Études et Relations Internationales</option>
+          <option value="Opérations Monétaires et de Marché">Opérations Monétaires et de Marché</option>
+          <option value="Réseau et Présence de Place">Réseau et Présence de Place</option>
+          <option value="Dar As-Sikkah (Hôtel des Monnaies)">Dar As-Sikkah (Hôtel des Monnaies)</option>
+          <option value="Systèmes d'Information">Systèmes d'Information (Informatique)</option>
+          <option value="Ressources Humaines et Formation">Ressources Humaines et Formation</option>
+          <option value="Finances et Contrôle de Gestion">Finances et Contrôle de Gestion</option>
+          <option value="Achats et Logistique">Achats et Logistique</option>
+          <option value="Juridique et Conformité">Juridique et Conformité</option>
+          <option value="Sûreté et Sécurité">Sûreté et Sécurité</option>
+          <option value="Communication et Relations Publiques">Communication et Relations Publiques</option>
+          <option value="Audit Interne">Audit Interne</option>
+          <option value="Gestion des Risques">Gestion des Risques</option>
+          <option value="Musée Bank Al-Maghrib">Musée Bank Al-Maghrib</option>
+          <option value="Autre">Autre</option>
+        </select>
+      </div>
+
+      <!-- <<< FIX: Removed the security question and answer fields from the form -->
+
+      <div class="form-group">
+        <label for="password">Mot de passe</label>
+        <input type="password" id="password" name="password" [(ngModel)]="registerData.password" required minlength="8" placeholder="Minimum 8 caractères">
+      </div>
+
+      <div class="form-group">
+        <label for="confirmPassword">Confirmer le mot de passe</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" [(ngModel)]="confirmPassword" required placeholder="Confirmez votre mot de passe">
+      </div>
+
+      <div class="form-group-checkbox">
+        <label class="checkbox-label">
+          <input type="checkbox" [(ngModel)]="acceptTerms" name="acceptTerms" required>
+          J'accepte les <a href="#">conditions d'utilisation</a>
+        </label>
+      </div>
+
+      <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+      </div>
+
+      <button type="submit" class="btn-primary btn-full" [disabled]="isSubmitting || registerForm.form.invalid || !acceptTerms">
+        {{ isSubmitting ? 'Création en cours...' : 'Créer mon compte' }}
+      </button>
+    </form>
+
+    <div class="form-footer" *ngIf="!registrationSuccess">
+      <p>Déjà un compte ? <a routerLink="/login">Se connecter</a></p>
+    </div>
+  </div>
+</div>

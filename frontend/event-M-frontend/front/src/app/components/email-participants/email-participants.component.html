@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>Envoyer un Email aux Participants</h1>
+<div mat-dialog-content [formGroup]="emailForm">
+  <p>Ce message sera envoyé en copie cachée à tous les participants inscrits à l'événement.</p>
+  
+  <mat-form-field appearance="outline" style="width: 100%;">
+    <mat-label>Sujet</mat-label>
+    <input matInput formControlName="subject" required>
+  </mat-form-field>
+  
+  <mat-form-field appearance="outline" style="width: 100%;">
+    <mat-label>Corps du message</mat-label>
+    <textarea matInput formControlName="body" required rows="10" placeholder="Rédigez votre annonce ici..."></textarea>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Annuler</button>
+  <button mat-raised-button color="primary" [disabled]="emailForm.invalid" (click)="onSend()">Envoyer</button>
+</div>

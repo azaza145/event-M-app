@@ -1,0 +1,70 @@
+<!-- Local Navigation Bar for the Login Page -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a class="nav-logo" routerLink="/">Bank Al-Maghrib Events</a>
+    <ul class="nav-menu">
+      <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Accueil</a></li>
+      <li><a routerLink="/login" routerLinkActive="active">Connexion</a></li>
+      <li><a routerLink="/register" class="nav-register-btn">Inscription</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Main Form Content -->
+<div class="form-container">
+  <div class="form-card">
+    
+    <!-- View 1: Normal Login Form -->
+    <div *ngIf="!resetRequired">
+      <h2>Connexion</h2>
+      <p>Connectez-vous à votre compte</p>
+      <form class="login-form" #loginForm="ngForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="email">Adresse email</label>
+          <input type="email" id="email" name="email" [(ngModel)]="loginData.email" required email placeholder="votre.email@bkam.ma">
+        </div>
+        <div class="form-group">
+          <label for="password">Mot de passe</label>
+          <input type="password" id="password" name="password" [(ngModel)]="loginData.password" required placeholder="Votre mot de passe">
+        </div>
+        <div class="form-options">
+          <a routerLink="/forgot-password" class="forgot-password">Mot de passe oublié ?</a>
+        </div>
+        <button type="submit" class="btn-primary btn-full" [disabled]="!loginForm.form.valid || isSubmitting">
+          <span *ngIf="isSubmitting" class="spinner-border-sm"></span>
+          {{ isSubmitting ? 'Connexion en cours...' : 'Se connecter' }}
+        </button>
+      </form>
+    </div>
+
+    <!-- View 2: Forced Password Reset Form -->
+    <div *ngIf="resetRequired">
+        <h2>Définir un nouveau mot de passe</h2>
+        <p>Une réinitialisation a été approuvée pour le compte :<br><b>{{ loginData.email }}</b></p>
+        <form #resetForm="ngForm" (ngSubmit)="onResetPasswordSubmit()">
+            <div class="form-group">
+                <label for="newPassword">Nouveau mot de passe</label>
+                <input type="password" class="form-control" name="newPassword" [(ngModel)]="newPasswordData.password" required minlength="8" placeholder="Minimum 8 caractères">
+            </div>
+            <div class="form-group">
+                <label for="confirmNewPassword">Confirmer le nouveau mot de passe</label>
+                <input type="password" class="form-control" name="confirmNewPassword" [(ngModel)]="newPasswordData.confirmPassword" required>
+            </div>
+            <button type="submit" class="btn-primary btn-full" [disabled]="!resetForm.form.valid || isSubmitting">
+                {{ isSubmitting ? 'Enregistrement...' : 'Définir le mot de passe' }}
+            </button>
+        </form>
+    </div>
+    
+    <!-- Centralized error message for both views -->
+    <div *ngIf="errorMessage" class="alert-danger" style="margin-top: 1rem;">
+        {{ errorMessage }}
+    </div>
+
+    <!-- The footer only shows during normal login -->
+    <div class="form-footer" *ngIf="!resetRequired">
+      <p>Pas encore de compte ? <a routerLink="/register">Créer un compte</a></p>
+    </div>
+    
+  </div>
+</div>

@@ -1,0 +1,48 @@
+<!-- Local Navigation Bar for the Home Page -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a class="nav-logo" routerLink="/">Bank Al-Maghrib Events</a>
+    <ul class="nav-menu">
+      <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Accueil</a></li>
+      
+      <!-- 
+        THIS IS THE FIX:
+        This block is shown ONLY if the user is NOT authenticated.
+      -->
+      <ng-container *ngIf="!authService.isAuthenticated()">
+        <li><a routerLink="/login" routerLinkActive="active">Connexion</a></li>
+        <li><a routerLink="/register" class="nav-register-btn">Inscription</a></li>
+      </ng-container>
+
+      <!-- 
+        This block is shown ONLY if the user IS authenticated.
+        This is a fallback in case a logged-in user lands here.
+      -->
+      <ng-container *ngIf="authService.isAuthenticated()">
+        <li *ngIf="authService.isAdmin()">
+          <a routerLink="/admin/dashboard" routerLinkActive="active">Panel Admin</a>
+        </li>
+        <li *ngIf="!authService.isAdmin()">
+          <a routerLink="/dashboard" routerLinkActive="active">Tableau de bord</a>
+        </li>
+        <li>
+          <a (click)="logout()" class="nav-logout-link">Déconnexion</a>
+        </li>
+      </ng-container>
+    </ul>
+  </div>
+</nav>
+
+<!-- Main Page Content (Hero Section, etc.) -->
+<div class="home-container">
+  <div class="hero-section">
+    <h1>Bienvenue sur la Plateforme de Gestion d'Événements</h1>
+    <h2>Bank Al-Maghrib</h2>
+    <p>Gérez efficacement tous vos événements internes : formations, réunions, ateliers et séminaires. Une solution centralisée pour simplifier l'organisation et améliorer la communication.</p>
+    <div class="hero-actions">
+      <a routerLink="/register" class="btn btn-primary">Créer un compte</a>
+      <a routerLink="/login" class="btn btn-secondary">Se connecter</a>
+    </div>
+  </div>
+  <!-- ... your features section ... -->
+</div>

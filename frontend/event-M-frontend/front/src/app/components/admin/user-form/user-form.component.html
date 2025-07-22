@@ -1,0 +1,49 @@
+<h1 mat-dialog-title>{{ isEditMode ? 'Modifier l\'Utilisateur' : 'Créer un Nouvel Utilisateur' }}</h1>
+
+<div mat-dialog-content [formGroup]="userForm">
+  <div class="form-row">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Prénom</mat-label>
+      <input matInput formControlName="firstName" required>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Nom</mat-label>
+      <input matInput formControlName="lastName" required>
+    </mat-form-field>
+  </div>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="email" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Département</mat-label>
+    <input matInput formControlName="department" required>
+  </mat-form-field>
+
+  <!-- These fields only show in "Create" mode -->
+  <ng-container *ngIf="!isEditMode">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Mot de passe</mat-label>
+      <input matInput formControlName="password" type="password" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Rôle</mat-label>
+      <mat-select formControlName="role" required>
+        <mat-option *ngFor="let role of allRoles" [value]="role">
+          {{ role }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </ng-container>
+
+</div>
+
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="dialogRef.close()">Annuler</button>
+  <button mat-raised-button color="primary" [disabled]="userForm.invalid" (click)="onSave()">
+    {{ isEditMode ? 'Sauvegarder' : 'Créer' }}
+  </button>
+</div>

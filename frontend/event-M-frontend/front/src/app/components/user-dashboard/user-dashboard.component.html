@@ -1,0 +1,123 @@
+<app-secure-navbar></app-secure-navbar>
+
+<div class="dashboard-wrapper">
+  <!-- Left Panel: Stats & Profile -->
+  <aside class="left-panel">
+    <div class="profile-summary card">
+      <div class="avatar">{{ currentUser?.firstName?.[0] }}{{ currentUser?.lastName?.[0] }}</div>
+      <h3>{{ currentUser?.firstName }} {{ currentUser?.lastName }}</h3>
+      <p>{{ currentUser?.department }}</p>
+      <span class="role-badge">{{ currentUser?.role }}</span>
+    </div>
+
+    <div class="stats-summary card">
+      <h4>En Bref</h4>
+      <div class="stat-item">
+        <i class="material-icons">event</i>
+        <span>{{ stats.upcomingEvents }} Événements à venir</span>
+      </div>
+      <div class="stat-item">
+        <i class="material-icons">how_to_reg</i>
+        <span>{{ stats.myRegistrations }} Inscriptions</span>
+      </div>
+      <div class="stat-item">
+        <i class="material-icons">workspace_premium</i>
+        <span>{{ stats.certificatesEarned }} Certificats Obtenus</span>
+      </div>
+    </div>
+    
+    <div class="actions-panel card" *ngIf="isOrganizer()">
+        <h4>Actions Rapides</h4>
+        <a routerLink="/my-events" class="btn btn-primary full-width">
+          <i class="material-icons">add_circle</i> Créer / Gérer un événement
+        </a>
+    </div>
+  </aside>
+
+  <!-- Center Panel: Main Content -->
+  <main class="main-content">
+    <div class="page-header">
+      <h1>Événements</h1>
+      <div class="filter-controls">
+        <div class="search-bar">
+          <i class="material-icons">search</i>
+          <input type="text" placeholder="Rechercher par titre..." [(ngModel)]="searchTerm" (ngModelChange)="onSearchChange()">
+        </div>
+        <div class="filter-buttons">
+          <button class="btn" [class.active]="activeFilter === 'upcoming'" (click)="setFilter('upcoming')">À Venir</button>
+          <button class="btn" [class.active]="activeFilter === 'my-registrations'" (click)="setFilter('my-registrations')">Mes Inscriptions</button>
+          <button class="btn" [class.active]="activeFilter === 'all'" (click)="setFilter('all')">Tous</button>
+        </div>
+      </div>
+    </div>
+    
+    <div *ngIf="isLoading" class="state-indicator"><p>Chargement des événements...</p></div>
+    <div *ngIf="!isLoading && displayEvents.length === 0" class="state-indicator empty">
+      <i class="material-icons">search_off</i>
+      <p>Aucun événement ne correspond à vos critères.</p>
+    </div>
+
+    <div *ngIf="!isLoading && displayEvents.length > 0" class="event-list-grid">
+      <div class="event-card" *ngFor="let event of displayEvents" [class.registered]="event.isRegistered">
+        <div class="event-card-date">
+          <span class="day">{{ event.date | date:'dd' }}</span>
+          <span class="month">{{ event.date | date:'MMM' }}</span>
+        </div>
+        <div class="event-card-details">
+          <h3 class="title">{{ event.title }}</h3>
+          <p class="location"><i class="material-icons">location_on</i> {{ event.location }}</p>
+        </div>
+        <div class="event-card-actions">
+          <button *ngIf="event.isRegistered && isPastEvent(event.date)" class="btn btn-certificate" (click)="downloadCertificate(event.id)">
+            <i class="material-icons">workspace_premium</i> Certificat
+          </button>
+          <span *ngIf="event.isRegistered && !isPastEvent(event.date)" class="status-badge">
+            <i class="material-icons">check_circle</i> Inscrit
+          </span>
+          <button *ngIf="!event.isRegistered && !isPastEvent(event.date)" class="btn btn-primary" (click)="register(event)">S'inscrire</button>
+          <a [routerLink]="['/events', event.id]" class="btn btn-outline">Détails</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Right Panel: Notifications & Q&A -->
+  <aside class="right-panel">
+    <div class="notifications-panel card">
+      <h4>Notifications</h4>
+      <div class="notification-list" *ngIf="notifications.length > 0; else noNotifications">
+        <div class="notification-item" *ngFor="let notification of notifications" [class.unread]="!notification.isRead" (click)="navigateToLink(notification)">
+          <div class="icon-wrapper"><i class="material-icons">campaign</i></div>
+          <div class="message-content">
+            <p>{{ notification.message }}</p>
+            <small>{{ notification.createdAt | date:'short' }}</small>
+          </div>
+          <button class="read-button" *ngIf="!notification.isRead" (click)="markNotificationAsRead(notification, $event)" matTooltip="Marquer comme lu">
+            <i class="material-icons">check</i>
+          </button>
+        </div>
+      </div>
+      <ng-template #noNotifications>
+        <p class="empty-text">Aucune nouvelle notification.</p>
+      </ng-template>
+    </div>
+
+    <div class="qa-panel card">
+      <h4>Questions & Réponses</h4>
+      <div class="question-form">
+        <textarea rows="4" placeholder="Vous avez une question ? Posez-la ici..." [(ngModel)]="newQuestionText" [disabled]="isSubmittingQuestion"></textarea>
+        <button class="btn btn-primary full-width" (click)="submitQuestion()" [disabled]="isSubmittingQuestion || !newQuestionText.trim()">
+          {{ isSubmittingQuestion ? 'Envoi...' : 'Soumettre' }}
+        </button>
+      </div>
+      <div class="faq-list">
+        <h5>Questions Fréquentes</h5>
+        <div *ngIf="faqs.length === 0" class="empty-text">Aucune question pour le moment.</div>
+        <details *ngFor="let faq of faqs" class="faq-item">
+          <summary>{{ faq.questionText }}</summary>
+          <p class="answer">{{ faq.answerText }}</p>
+        </details>
+      </div>
+    </div>
+  </aside>
+</div>

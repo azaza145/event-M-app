@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>Répondre à la question</h1>
+<div mat-dialog-content>
+  <p><strong>Question de {{data.question.user.firstName}}:</strong></p>
+  <p style="font-style: italic; margin-bottom: 1.5rem;">"{{ data.question.questionText }}"</p>
+  
+  <form [formGroup]="answerForm">
+    <mat-form-field appearance="outline" style="width: 100%;">
+      <mat-label>Votre Réponse</mat-label>
+      <textarea matInput formControlName="answerText" required rows="8"></textarea>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Annuler</button>
+  <button mat-raised-button color="primary" [disabled]="answerForm.invalid" (click)="onSave()">Soumettre la Réponse</button>
+</div>

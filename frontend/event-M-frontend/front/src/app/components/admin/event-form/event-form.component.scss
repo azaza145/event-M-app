@@ -1,0 +1,14 @@
+.event-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.full-width {
+  width: 100%;
+}

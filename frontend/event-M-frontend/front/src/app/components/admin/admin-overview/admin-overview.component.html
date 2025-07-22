@@ -1,0 +1,32 @@
+<h1>Vue d'ensemble</h1>
+<p class="subtitle">Statistiques clés de la plateforme.</p>
+
+<div *ngIf="isLoading" class="loading-indicator">Chargement...</div>
+
+<div *ngIf="!isLoading" class="stats-grid">
+  <mat-card class="stat-card pending">
+    <mat-card-header>
+      <mat-icon mat-card-avatar>how_to_reg</mat-icon>
+      <mat-card-title>{{ stats.pendingUsers }}</mat-card-title>
+      <mat-card-subtitle>Approbations en attente</mat-card-subtitle>
+    </mat-card-header>
+  </mat-card>
+
+  <mat-card class="stat-card users">
+    <mat-card-header>
+      <mat-icon mat-card-avatar>group</mat-icon>
+      <mat-card-title>{{ stats.activeUsers }}</mat-card-title>
+      <mat-card-subtitle>Utilisateurs Actifs</mat-card-subtitle>
+    </mat-card-header>
+  </mat-card>
+
+  <mat-card class="stat-card events">
+    <mat-card-header>
+      <mat-icon mat-card-avatar>event</mat-icon>
+      <mat-card-title>{{ stats.totalEvents }}</mat-card-title>
+      <mat-card-subtitle>Événements Créés</mat-card-subtitle>
+    </mat-card-header>
+  </mat-card>
+</div>
+
+<!-- You can add more summary information or charts here later -->

@@ -1,0 +1,37 @@
+<app-secure-navbar></app-secure-navbar>
+
+<div class="profile-container">
+  <h1>Mon Profil</h1>
+  <p>Voici les informations relatives à votre compte.</p>
+
+  <div *ngIf="isLoading" class="loading-indicator">Chargement du profil...</div>
+
+  <div *ngIf="!isLoading && user" class="profile-card">
+    <h2>Détails du Compte</h2>
+    <div class="profile-details">
+      <div class="detail-item">
+        <span class="label">Prénom</span>
+        <span class="value">{{ user.firstName }}</span>
+      </div>
+      <div class="detail-item">
+        <span class="label">Nom</span>
+        <span class="value">{{ user.lastName }}</span>
+      </div>
+      <div class="detail-item">
+        <span class="label">Email</span>
+        <span class="value">{{ user.email }}</span>
+      </div>
+      <div class="detail-item">
+        <span class="label">Département</span>
+        <span class="value">{{ user.department }}</span>
+      </div>
+       <div class="detail-item">
+        <span class="label">Rôle</span>
+        <span class="value">{{ user.role }}</span>
+      </div>
+    </div>
+    <div class="profile-footer">
+      <p>Pour toute modification, veuillez contacter un administrateur.</p>
+    </div>
+  </div>
+</div>

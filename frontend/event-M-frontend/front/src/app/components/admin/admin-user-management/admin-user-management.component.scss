@@ -1,0 +1,46 @@
+.section-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+
+  .mat-mdc-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    flex-wrap: wrap; // Allows button to wrap on small screens
+  }
+
+  .mat-mdc-card-title, .mat-mdc-card-subtitle {
+    flex: 1 1 auto;
+  }
+
+  .header-button {
+    margin-left: 1rem;
+    flex-shrink: 0;
+  }
+}
+
+.data-table {
+  width: 100%;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.role-select {
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+  background-color: white;
+  &:focus {
+    outline-color: #f59e0b;
+  }
+}
+
+.empty-state, .loading-indicator {
+  padding: 2rem;
+  text-align: center;
+  color: #6b7280;
+}

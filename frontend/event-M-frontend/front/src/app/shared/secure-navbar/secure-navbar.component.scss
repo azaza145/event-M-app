@@ -1,0 +1,43 @@
+// --- Color Theme ---
+$primary-color: #ba5c10; // Dark Green
+$accent-color: #040200;   // Orange for active links
+$text-color: #f0fdf4;
+
+.navbar {
+  display: flex;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: $primary-color;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  color: $text-color;
+}
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.nav-logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+}
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  a {
+    text-decoration: none;
+    color: $text-color;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 0.2s;
+    &.active, &:hover { color: $accent-color; }
+  }
+}

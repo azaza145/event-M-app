@@ -1,0 +1,178 @@
+// --- Color Theme ---
+$primary-color: #f59e0b;
+$primary-color-dark: #d97706;
+$text-color-dark: #1f2937;
+$text-color-light: #6b7280;
+$background-color: #f9fafb;
+$card-background: #ffffff;
+$border-color: #e5e7eb;
+$danger-color: #dc3545;
+
+// --- Navigation Bar ---
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  background-color: $card-background;
+  border-bottom: 1px solid $border-color;
+}
+
+.nav-logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: $text-color-dark;
+  text-decoration: none;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 1.5rem;
+
+  a {
+    text-decoration: none;
+    color: $text-color-light;
+    font-weight: 500;
+    transition: color 0.2s ease-in-out;
+    &.active, &:hover { color: $primary-color; }
+  }
+
+  .nav-register-btn {
+    background-color: $primary-color;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    &:hover { background-color: $primary-color-dark; color: white; }
+  }
+}
+
+// --- Form Styling ---
+.form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1rem;
+  background-color: $background-color;
+}
+
+.form-card {
+  width: 100%;
+  max-width: 550px;
+  background: $card-background;
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+
+  h2 {
+    text-align: center;
+    color: $text-color-dark;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    text-align: center;
+    color: $text-color-light;
+    margin-bottom: 2.5rem;
+  }
+}
+
+.form-row {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  flex: 1;
+
+  label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: $text-color-dark;
+  }
+
+  input, select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid $border-color;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #fff;
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+      box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
+    }
+  }
+}
+
+.form-group-checkbox {
+  margin-bottom: 1.5rem;
+  .checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: $text-color-light;
+    input[type="checkbox"] { width: auto; }
+    a {
+      color: $primary-color;
+      text-decoration: none;
+      &:hover { text-decoration: underline; }
+    }
+  }
+}
+
+.btn-primary.btn-full {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1.1rem;
+  background-color: $primary-color;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  &:hover { background-color: $primary-color-dark; }
+  &:disabled { background-color: #ccc; cursor: not-allowed; }
+}
+
+.form-footer {
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid $border-color;
+  font-size: 0.9rem;
+  color: $text-color-light;
+
+  a {
+    color: $primary-color;
+    font-weight: 600;
+    text-decoration: none;
+    &:hover { text-decoration: underline; }
+  }
+}
+
+.alert {
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.alert-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.alert-success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}

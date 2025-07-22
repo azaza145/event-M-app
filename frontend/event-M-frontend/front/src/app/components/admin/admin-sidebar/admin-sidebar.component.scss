@@ -1,0 +1,122 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+$sidebar-bg: #1f2937; // Dark gray
+$sidebar-text: #e5e7eb; // Light gray
+$active-bg: #374151; // Slightly lighter gray for active
+$active-indicator: #f59e0b; // Orange accent
+$hover-bg: #4b5563;
+$profile-bg: #111827; // Even darker for profile
+
+.sidebar-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 260px;
+  background-color: $sidebar-bg;
+  color: $sidebar-text;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar-header {
+  padding: 1.5rem 1.25rem;
+  border-bottom: 1px solid $hover-bg;
+
+  .logo-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: white;
+  }
+
+  .logo-icon {
+    font-size: 2rem;
+    height: 2rem;
+    width: 2rem;
+  }
+
+  .logo-text {
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+}
+
+.nav-list {
+  flex-grow: 1;
+  padding-top: 1rem;
+
+  a.mat-mdc-list-item {
+    color: $sidebar-text;
+    margin: 0.25rem 0.75rem;
+    border-radius: 6px;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    border-left: 4px solid transparent;
+
+    .mat-icon {
+      color: #9ca3af; // Muted icon color
+      transition: color 0.2s ease-in-out;
+    }
+
+    &:hover {
+      background-color: $hover-bg;
+      color: white;
+      .mat-icon {
+        color: white;
+      }
+    }
+
+    &.active-link {
+      background-color: $active-bg;
+      color: white;
+      font-weight: 500;
+      border-left-color: $active-indicator;
+
+      .mat-icon {
+        color: $active-indicator;
+      }
+    }
+  }
+}
+
+.sidebar-footer {
+  padding: 1rem;
+  border-top: 1px solid $hover-bg;
+}
+
+.profile-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: $profile-bg;
+  padding: 0.75rem;
+  border-radius: 8px;
+
+  .profile-info {
+    .profile-name {
+      font-weight: 600;
+      color: white;
+    }
+    .profile-role {
+      font-size: 0.8rem;
+      color: #9ca3af;
+    }
+  }
+
+  .logout-button {
+    background: none;
+    border: none;
+    color: #9ca3af;
+    cursor: pointer;
+    border-radius: 50%;
+    padding: 8px;
+    transition: background-color 0.2s, color 0.2s;
+
+    &:hover {
+      background-color: $hover-bg;
+      color: white;
+    }
+  }
+}

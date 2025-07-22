@@ -1,0 +1,11 @@
+services:
+  postgres:
+    image: 'postgres:latest'
+    environment:
+      # These are the credentials INSIDE the Docker container
+      - 'POSTGRES_DB=my_db_anwar'
+      - 'POSTGRES_PASSWORD=postgres'
+      - 'POSTGRES_USER=postgres'
+    ports:
+      # This maps port 5433 on your computer to port 5432 inside the container
+      - '5433:5432'

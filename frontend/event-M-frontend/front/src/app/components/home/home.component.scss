@@ -1,0 +1,118 @@
+// --- Color Theme ---
+$primary-color: #f59e0b; // A vibrant orange
+$primary-color-dark: #d97706; // A darker orange for hover effects
+$text-color-dark: #1f2937;
+$text-color-light: #4b5563;
+$background-color: #f9fafb;
+$card-background: #ffffff;
+$border-color: #e5e7eb;
+
+// --- Navigation Bar ---
+.navbar {
+  display: flex;
+  align-items: center;
+  background-color: $card-background;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid $border-color;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.nav-logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: $text-color-dark;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 1.5rem;
+
+  a {
+    text-decoration: none;
+    color: $text-color-light;
+    font-weight: 500;
+    transition: color 0.2s ease-in-out;
+    &.active, &:hover { color: $primary-color; }
+  }
+
+  .nav-register-btn {
+    background-color: $primary-color;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    &:hover { background-color: $primary-color-dark; color: white; }
+  }
+}
+
+// --- Page Content ---
+.home-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+// --- Hero Section ---
+.hero-section {
+  text-align: center;
+  padding: 4rem 1rem;
+  
+  h1 { font-size: 2.8rem; font-weight: 800; color: $text-color-dark; margin-bottom: 1rem; }
+  h2 { font-size: 1.5rem; color: $primary-color; margin-bottom: 1.5rem; }
+  p { max-width: 600px; margin: 0 auto 2.5rem auto; color: $text-color-light; line-height: 1.6; }
+  .hero-actions { display: flex; justify-content: center; gap: 1rem; }
+}
+
+// --- Buttons ---
+.btn {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+.btn-primary {
+  background-color: $primary-color; color: white;
+  &:hover { background-color: $primary-color-dark; transform: translateY(-2px); }
+}
+.btn-secondary {
+  background-color: $card-background; color: $text-color-dark; border: 1px solid $border-color;
+  &:hover { background-color: $background-color; transform: translateY(-2px); }
+}
+
+// --- Features Section ---
+.features-section {
+  padding: 3rem 1rem;
+}
+.section-title {
+  text-align: center;
+  font-size: 2rem;
+  color: $text-color-dark;
+  margin-bottom: 3rem;
+}
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+.feature-card {
+  background-color: $card-background;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.07);
+  
+  h4 { font-size: 1.25rem; color: $text-color-dark; margin-bottom: 1rem; }
+  p { color: $text-color-light; font-size: 0.9rem; line-height: 1.5; }
+}

@@ -1,0 +1,162 @@
+$primary-color: #f59e0b;
+$primary-color-dark: #d97706;
+$text-color-dark: #1f2937;
+$text-color-light: #6b7280;
+$background-color: #f8f9fa;
+$card-background: #ffffff;
+$border-color: #e5e7eb;
+$success-color: #10b981;
+$success-bg-color: #f0fdf4;
+
+:host {
+  display: block;
+  background-color: $background-color;
+  min-height: 100vh;
+}
+
+.details-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 3rem 1rem;
+}
+
+.loading-indicator, .error-message {
+  text-align: center;
+  padding: 4rem;
+  color: $text-color-light;
+  background: $card-background;
+  border-radius: 12px;
+}
+
+.event-card {
+  background: $card-background;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.07);
+  padding: 2rem 2.5rem;
+}
+
+.event-header {
+  border-bottom: 1px solid $border-color;
+  padding-bottom: 1.5rem;
+  margin-bottom: 2rem;
+
+  h1 {
+    font-size: 2.5rem;
+    color: $text-color-dark;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .event-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    color: $text-color-light;
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+
+      .material-icons {
+        font-size: 1.25rem;
+        color: $primary-color;
+      }
+    }
+  }
+}
+
+.event-body {
+  margin-bottom: 2.5rem;
+  h2 {
+    font-size: 1.5rem;
+    color: $text-color-dark;
+    margin-bottom: 1rem;
+  }
+  .description-text {
+    line-height: 1.7;
+    color: $text-color-dark;
+    white-space: pre-wrap; // Respects newlines in the description
+  }
+}
+
+.event-actions {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+
+  .btn {
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+
+    .material-icons {
+      font-size: 1.2rem;
+    }
+
+    &.btn-primary {
+      background-color: $primary-color;
+      color: white;
+      &:hover { background-color: darken($primary-color, 10%); }
+    }
+    
+    &.btn-secondary {
+      background-color: $border-color;
+      color: $text-color-dark;
+      &:hover { background-color: darken($border-color, 5%); }
+    }
+  }
+
+  .status-badge.registered {
+    background-color: $success-bg-color;
+    color: darken($success-color, 10%);
+    border: 1px solid darken($success-bg-color, 5%);
+    font-weight: 600;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+}
+
+.event-participants {
+    border-top: 1px solid $border-color;
+    padding-top: 2rem;
+
+    h3 {
+        font-size: 1.25rem;
+        color: $text-color-dark;
+        margin-bottom: 1.5rem;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            background-color: $background-color;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+
+            .material-icons {
+                color: $text-color-light;
+            }
+        }
+    }
+}

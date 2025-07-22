@@ -1,0 +1,64 @@
+<mat-card class="section-card">
+  <mat-card-header>
+    <mat-card-title>Gestion des Utilisateurs Actifs ({{ activeUsers.length }})</mat-card-title>
+    <mat-card-subtitle>Créer, modifier et gérer les rôles des utilisateurs approuvés.</mat-card-subtitle>
+    <button mat-flat-button color="primary" class="header-button" (click)="openCreateUserDialog()">
+      <mat-icon>add</mat-icon>
+      Nouvel Utilisateur
+    </button>
+  </mat-card-header>
+  <mat-card-content>
+    <div *ngIf="isLoading" class="loading-indicator">Chargement des utilisateurs...</div>
+    
+    <div *ngIf="!isLoading && activeUsers.length === 0" class="empty-state">
+      Aucun utilisateur non-administrateur trouvé.
+    </div>
+
+    <table mat-table [dataSource]="activeUsers" class="data-table" *ngIf="!isLoading && activeUsers.length > 0">
+      
+      <!-- Columns: fullName, email, department -->
+      <ng-container matColumnDef="fullName">
+        <th mat-header-cell *matHeaderCellDef>Nom Complet</th>
+        <td mat-cell *matCellDef="let user">{{ user.firstName }} {{ user.lastName }}</td>
+      </ng-container>
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>Email</th>
+        <td mat-cell *matCellDef="let user">{{ user.email }}</td>
+      </ng-container>
+      <ng-container matColumnDef="department">
+        <th mat-header-cell *matHeaderCellDef>Département</th>
+        <td mat-cell *matCellDef="let user">{{ user.department }}</td>
+      </ng-container>
+
+      <!-- Role Column - THIS IS THE FIX FOR DISPLAY -->
+      <ng-container matColumnDef="role">
+        <th mat-header-cell *matHeaderCellDef>Rôle</th>
+        <td mat-cell *matCellDef="let user">
+          <!-- 
+            [value]="user.role" ensures the dropdown always reflects the user's current role.
+            When 'user.role' is 'ORGANIZER', the option with value="ORGANIZER" will be selected.
+          -->
+          <select class="role-select" [value]="user.role" (change)="onRoleChange($event, user)">
+            <option *ngFor="let role of allRoles" [value]="role">{{ role }}</option>
+          </select>
+        </td>
+      </ng-container>
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef class="text-right">Actions</th>
+        <td mat-cell *matCellDef="let user" class="text-right">
+          <button mat-icon-button color="primary" (click)="openEditUserDialog(user)" matTooltip="Modifier les informations">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="deleteUser(user)" matTooltip="Supprimer l'utilisateur">
+            <mat-icon>delete_forever</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </mat-card-content>
+</mat-card>

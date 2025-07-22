@@ -1,0 +1,36 @@
+<div class="admin-container">
+  <h1>Approve Password Reset Requests</h1>
+  <p>Approve these requests after verifying the user's identity through an internal channel.</p>
+
+  <div *ngIf="isLoading"><p>Loading requests...</p></div>
+  <div *ngIf="message" class="alert alert-info">{{ message }}</div>
+
+  <div *ngIf="!isLoading" class="table-container">
+    <div *ngIf="requests.length === 0">
+      <p>There are no pending password reset requests.</p>
+    </div>
+    <table *ngIf="requests.length > 0">
+      <thead>
+        <tr>
+          <th>User ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of requests">
+          <td>{{ user.id }}</td>
+          <td>{{ user.firstName }} {{ user.lastName }}</td>
+          <td>{{ user.email }}</td>
+          <td>
+            <button class="btn-approve" (click)="onApprove(user.id)">Approve</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="footer-link">
+    <a routerLink="/admin/users">Back to User Management</a>
+  </div>
+</div>

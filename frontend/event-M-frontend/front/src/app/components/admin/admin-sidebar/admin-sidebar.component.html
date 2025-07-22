@@ -1,0 +1,43 @@
+<div class="sidebar-container">
+  <div class="sidebar-header">
+    <a class="logo-link" routerLink="/admin/dashboard">
+      <mat-icon class="logo-icon">security</mat-icon>
+      <span class="logo-text">Panel Admin</span>
+    </a>
+  </div>
+
+  <mat-nav-list class="nav-list">
+    <a mat-list-item routerLink="overview" routerLinkActive="active-link">
+      <mat-icon matListItemIcon>dashboard</mat-icon>
+      <span matListItemTitle>Vue d'ensemble</span>
+    </a>
+    <a mat-list-item routerLink="approvals" routerLinkActive="active-link">
+      <mat-icon matListItemIcon>how_to_reg</mat-icon>
+      <span matListItemTitle>Approbations</span>
+    </a>
+    <a mat-list-item routerLink="users" routerLinkActive="active-link">
+      <mat-icon matListItemIcon>group</mat-icon>
+      <span matListItemTitle>Utilisateurs</span>
+    </a>
+    <a mat-list-item routerLink="events" routerLinkActive="active-link">
+      <mat-icon matListItemIcon>event</mat-icon>
+      <span matListItemTitle>Événements</span>
+    </a>
+     <a mat-list-item routerLink="questions" routerLinkActive="active-link">
+      <mat-icon matListItemIcon>quiz</mat-icon>
+      <span matListItemTitle>Questions</span>
+    </a>
+  </mat-nav-list>
+
+  <div class="sidebar-footer">
+    <div class="profile-card">
+      <div class="profile-info">
+        <div class="profile-name">{{ authService.currentUser()?.firstName }} {{ authService.currentUser()?.lastName }}</div>
+        <div class="profile-role">{{ authService.currentUser()?.role }}</div>
+      </div>
+      <button class="logout-button" (click)="logout()" matTooltip="Déconnexion">
+        <mat-icon>logout</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

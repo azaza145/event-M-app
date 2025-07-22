@@ -1,0 +1,30 @@
+<mat-card class="section-card">
+  <mat-card-header>
+    <mat-card-title>Questions des Utilisateurs ({{ unansweredQuestions.length }})</mat-card-title>
+    <mat-card-subtitle>Répondez aux questions soumises pour les publier dans la FAQ.</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <div *ngIf="isLoading" class="loading-indicator">Chargement des questions...</div>
+    
+    <div *ngIf="!isLoading && unansweredQuestions.length === 0" class="empty-state">
+      <i class="material-icons">check_circle_outline</i>
+      <p>Toutes les questions ont été traitées !</p>
+    </div>
+
+    <mat-list *ngIf="!isLoading && unansweredQuestions.length > 0">
+      <div mat-subheader>Questions en attente de réponse</div>
+      <mat-list-item *ngFor="let question of unansweredQuestions">
+        <div matListItemTitle class="question-title">{{ question.questionText }}</div>
+        <div matListItemLine class="question-meta">
+          <span>Posée par: {{ question.user.firstName }} {{ question.user.lastName }}</span>
+          <span>•</span>
+          <span>Le: {{ question.createdAt | date:'dd/MM/yyyy à HH:mm' }}</span>
+        </div>
+        <button mat-flat-button color="primary" (click)="openAnswerDialog(question)">
+          <mat-icon>edit</mat-icon> Répondre
+        </button>
+      </mat-list-item>
+    </mat-list>
+
+  </mat-card-content>
+</mat-card>

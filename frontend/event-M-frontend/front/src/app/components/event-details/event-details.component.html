@@ -1,0 +1,56 @@
+<app-secure-navbar></app-secure-navbar>
+
+<div class="details-container">
+  <div *ngIf="isLoading" class="loading-indicator">Chargement...</div>
+
+  <div *ngIf="event && !isLoading" class="event-card">
+    <div class="event-header">
+      <h1>{{ event.title }}</h1>
+      <div class="event-meta">
+        <span class="meta-item"><i class="material-icons">event</i> {{ event.date | date:'fullDate':'':'fr-FR' }}</span>
+        <span class="meta-item"><i class="material-icons">location_on</i> {{ event.location }}</span>
+        <span class="meta-item"><i class="material-icons">people</i> {{ event.participants?.length || 0 }} participant(s)</span>
+      </div>
+    </div>
+
+    <!-- Organizer-only management tools -->
+    <div *ngIf="isOrganizerView" class="organizer-actions card-section">
+        <h3>Outils de Gestion</h3>
+        <button class="btn btn-primary" (click)="openEmailDialog()">
+            <i class="material-icons">email</i> Envoyer une annonce aux participants
+        </button>
+    </div>
+
+    <div class="event-body card-section">
+      <h2>Description</h2>
+      <p class="description-text">{{ event.description }}</p>
+    </div>
+
+    <div class="event-actions card-section">
+      <button *ngIf="!isRegistered" class="btn btn-primary" (click)="registerForEvent()">
+        <i class="material-icons">how_to_reg</i> S'inscrire
+      </button>
+      <div *ngIf="isRegistered" class="status-badge registered">
+        <i class="material-icons">check_circle</i> Vous êtes inscrit
+      </div>
+      <a routerLink="/dashboard" class="btn btn-secondary">Retour au tableau de bord</a>
+    </div>
+
+    <div class="event-participants card-section">
+        <h3>Liste des Participants</h3>
+        <ul *ngIf="event.participants && event.participants.length > 0">
+            <li *ngFor="let participant of event.participants">
+                <div class="participant-info">
+                    <i class="material-icons">person</i>
+                    <span>{{ participant.firstName }} {{ participant.lastName }} ({{ participant.department }})</span>
+                </div>
+                <button *ngIf="isOrganizerView" mat-icon-button class="btn-remove" (click)="removeParticipant(participant)" matTooltip="Retirer le participant">
+                    <mat-icon>person_remove</mat-icon>
+                </button>
+            </li>
+        </ul>
+        <p *ngIf="!event.participants || event.participants.length === 0">Aucun participant inscrit pour le moment.</p>
+    </div>
+
+  </div>
+</div>

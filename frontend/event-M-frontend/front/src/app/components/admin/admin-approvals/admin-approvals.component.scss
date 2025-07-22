@@ -1,0 +1,39 @@
+/* Use styles from the old admin-dashboard.scss or create new ones */
+/* For example: */
+.section-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.data-table {
+  width: 100%;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.btn-approve, .btn-deny {
+  margin-left: 8px;
+  mat-icon {
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+}
+
+.btn-approve {
+  background-color: #10b981;
+  color: white;
+}
+
+.btn-deny {
+  background-color: #ef4444;
+  color: white;
+}
+
+.empty-state, .loading-indicator {
+  padding: 2rem;
+  text-align: center;
+  color: #6b7280;
+}

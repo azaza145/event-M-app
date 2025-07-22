@@ -4,18 +4,35 @@ Welcome to the Event Management Platform, a full-stack web application designed 
 🖼️ Application Screenshots
 
 Home Page
+<img width="1366" height="768" alt="homepage" src="https://github.com/user-attachments/assets/f70b85f5-e8ee-481b-820f-2f1335cfd1da" />
+
 Login Page
+<img width="1366" height="768" alt="loginpage" src="https://github.com/user-attachments/assets/401439c0-b423-47a2-83b4-4f76500d22cf" />
+
 Register page
+<img width="1366" height="768" alt="registerpage" src="https://github.com/user-attachments/assets/0d0ac73a-5c41-48aa-aa1b-5f69b4b90cdb" />
 
 Admin Dashboard
+<img width="1366" height="768" alt="admindashboard" src="https://github.com/user-attachments/assets/c1afdd75-812e-42cc-aa97-e717d1fc9103" />
+
 User Approvals
+<img width="1366" height="768" alt="adminapprovalpage" src="https://github.com/user-attachments/assets/010c0265-34cb-4e9e-a306-34b65321995a" />
+
 User Management 
+<img width="1366" height="768" alt="admineventmanagementpage" src="https://github.com/user-attachments/assets/f9247be7-74b4-483c-b663-0ecf65de837b" />
+
 Event Management
+<img width="1366" height="768" alt="adminmanagementpage" src="https://github.com/user-attachments/assets/459f1a98-4596-4259-b1e9-8031ed1a0b3c" />
+
 Question Answer
-		
+<img width="1366" height="768" alt="adminquestionpage" src="https://github.com/user-attachments/assets/386607bd-a558-49a5-8672-5842d3b7139d" />
+	
 Organizer Page
+<img width="1366" height="768" alt="organizerdashboard" src="https://github.com/user-attachments/assets/e9266db5-a7b4-41a0-80c8-de04fe172657" />
+
 User Dashboard
-  
+<img width="1366" height="768" alt="userdashboardpage" src="https://github.com/user-attachments/assets/f0769a38-d40a-45c0-ac90-090ff2b0141a" />
+ 
 🚀 Key Features
 👑 Admin Panel
 

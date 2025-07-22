@@ -111,9 +111,6 @@ cd event-M-app
 
     
 
-IGNORE_WHEN_COPYING_START
-Use code with caution. Bash
-IGNORE_WHEN_COPYING_END
 
 2. Backend Setup (Spring Boot)
 
@@ -137,9 +134,7 @@ mvn spring-boot:run
 
     
 
-IGNORE_WHEN_COPYING_START
-Use code with caution. Bash
-IGNORE_WHEN_COPYING_END
+
 
 The backend API will now be running on http://localhost:8080.
 
